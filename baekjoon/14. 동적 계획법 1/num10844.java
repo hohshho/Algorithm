@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 
 public class num10844 {
 
-	static int[] dp;
-	static int dpLen = 0;
-	static int count =0;
+	static int[] arr;
+	static int N;
+	static Long count =0L;
 	static void calc(int num, int depth) {
-		if(depth==dpLen) {
+		if(depth==N) {
 			count++;
 			return;
 		}
@@ -26,9 +26,7 @@ public class num10844 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int N = Integer.parseInt(br.readLine());
-		dp = new int[N+1];
-		dpLen = dp.length-1;
+		N = Integer.parseInt(br.readLine());
 		for(int i=1;i<10;i++) {
 			calc(i,1);
 		}
