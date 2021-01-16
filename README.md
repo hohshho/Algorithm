@@ -367,9 +367,3 @@ O(스퀘어 루트 엔)
 
 - Int to String : Integer.toString();
 - String to Int : Integer.parseInt();
-
-# JAVA 컬렉션 프레임워크
-
-https://gangnam-americano.tistory.com/41
-https://coding-factory.tistory.com/550
-https://gbsb.tistory.com/247
