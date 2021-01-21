@@ -4,7 +4,7 @@
 
 - backjoon : 백준 알고리즘 단계별 풀이
 - dataStructure : 자료구조, 알고리즘 예제 정리
-- programmers : 프로그래머스 고득점kit 풀이
+- programmers : 프로그래머스 풀이
 
 # 알고리즘 성능 표현 방법
 
