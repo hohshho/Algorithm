@@ -171,10 +171,31 @@ O(스퀘어 루트 엔)
 # Heap
 
 - 최대값이나 최소값을 빠르게 찾기위해 고안된 완전이진트리를 기반으로한 자료구조
-- MinHeap : 가장 작은값이 root노드 / MaxHeap : 가장 큰 값이 root노드
+## MinHeap : 가장 작은값이 root노드
+##MaxHeap : 가장 큰 값이 root노드
 - 노드 추가 시, 가장 마지막에 추가하고 위의 노드와 비교하는 방식으로 정렬
 - 노드 삭제 시, root노드의 값을 빼고 정렬하는 방식
 
+Tip!!
+> JAVA PriorityQueue 는 기본적으로 minHeap이다.
+
+```java
+// 최소 힙
+PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+
+// 최대 힙
+PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+
+// 최대 힙 version2
+PriorityQueue<Integer> maxHeap = PriorityQueue<>(new Comparator<Integer>(){
+	@Override
+	public int compare(Integer i1, Integer i2) {
+		return i2-i1;
+	}
+});
+
+
+```
 # Graph
 
 ## 분류
