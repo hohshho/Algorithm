@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class num11657 {
-
+	static int N, M;
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		String[] inputNM = br.readLine().split(" ");
-		int N = stoi(inputNM[0]);
-		int M = stoi(inputNM[1]);
+		N = stoi(inputNM[0]);
+		M = stoi(inputNM[1]);
+		
+		
 		
 	}
 	

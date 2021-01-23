@@ -1,51 +1,43 @@
-package package24;
+package MinPath;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 
-public class num11404 {
-	static int N, M, INF = 100000000;
-	static int[][] dis;
+public class num11403 {
+	static int INF = 1000000;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();
 		
-		N = stoi(br.readLine());
-		M = stoi(br.readLine());
-		
-		dis = new int[N][N];
+		int N = stoi(br.readLine());
+		int[][] dis = new int[N][N];
 		
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<N; j++) {
-				dis[i][j] = i == j ? 0 : INF;
+				dis[i][j] = INF;
 			}
 		}
 		
-		for(int i=0; i<M; i++) {
-			String[] abc = br.readLine().split(" ");
-			int a = stoi(abc[0])-1;
-			int b = stoi(abc[1])-1;
-			int c = stoi(abc[2]);
-			
-			dis[a][b] = Math.min(dis[a][b], c);
+		for(int i=0; i<N; i++) {
+			String[] inputData = br.readLine().split(" ");
+			for(int j=0;j<N;j++) {
+				dis[i][j] = stoi(inputData[j]);
+				if(dis[i][j] == 0) dis[i][j] = INF;
+			}
 		}
 		
 		for(int k=0; k<N; k++) {
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
-					dis[i][j] = Math.min(dis[i][j], dis[i][k] +dis[k][j]);
+					dis[i][j] = Math.min(dis[i][j], dis[i][k] + dis[k][j]);
 				}
 			}
 		}
 		
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-            	dis[i][j] = dis[i][j] == INF ? 0 : dis[i][j];
+            	dis[i][j] = dis[i][j] == INF ? 0 : 1;
                 sb.append(dis[i][j] + " ");
             }
             sb.append("\n");
@@ -55,6 +47,7 @@ public class num11404 {
         bw.flush();
         bw.close();
         br.close();
+		
 	}
 	public static int stoi(String string) {
 		return Integer.parseInt(string);
