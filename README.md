@@ -280,6 +280,9 @@ PriorityQueue<Integer> maxHeap = PriorityQueue<>(new Comparator<Integer>(){
 ## 3D(쓰리디) -> (스택 - FILO - DFS)
 
 - 거리측정은 <b>BFS</b>만 가능!
+- BFS, DFS 시간 복잡도
+  - 인접 리스트 구현 -> O(N+E)
+  - 인접 행렬 구현 -> O(N^2)
 
 ## DFS (Stack, 재귀)
 
@@ -287,11 +290,17 @@ PriorityQueue<Integer> maxHeap = PriorityQueue<>(new Comparator<Integer>(){
 - 선택한 노드에서 갈 수 있는 노드 중 하나 선택 (방문한 노드는 제외)
 - 갈 수 있는 노드가 존재하지 않으면 이전 노드로 돌아와서 갈 수 있는 노드 중 하나를 선택한다
 
+### 사용 예시
+ - 미로 생성, Cycle Detection, 위상 정렬
+
 ## BFS (Queue)
 
 - 한 노드에서 갈 수 있는 노드를 큐에 추가한다.
 - 큐에서 노드를 하나 꺼내어 꺼낸 노드에서 갈 수 있는 노드를 큐에 추가한다.
 - 큐에 노드가 존재하지 않으면 break 한다.
+
+### 사용 예시
+ - 최단 경로, 임의 경로 탐색, 최소 신장 트리
 
 # 4. 탐욕법
 
