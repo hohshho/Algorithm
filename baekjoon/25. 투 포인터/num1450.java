@@ -1,5 +1,4 @@
 package package25;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,9 +33,9 @@ public class num1450 {
 		Collections.sort(right);
 		
 		for (int i = 0; i < left.size(); i++) {
-            index = -1;
+            index = 0;
             binarySearch(0, right.size() - 1, left.get(i));
-            count += index + 1;
+            count += index +1;
 		}
 		
 		System.out.println(count);
