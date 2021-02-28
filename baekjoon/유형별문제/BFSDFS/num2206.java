@@ -1,71 +1,69 @@
 package BFSDFS;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+import java.io.*;
 
 public class num2206 {
-	static int n,m;
-	static int[][] arr;
-	static int[] dx = new int[] {1,-1,0,0};
-	static int[] dy = new int[] {0,0,1,-1};
-	static int count = 0;
-	static boolean[][] visited;
-	static int throwIndex = 0;
 	
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] nm = br.readLine().split(" ");
-		n = Integer.parseInt(nm[0]);
-		m = Integer.parseInt(nm[1]);
-		arr = new int[n][m];
-		visited = new boolean[n][m];
-		Queue<int[]> q = new LinkedList<>();
+	public static class Node{
+		int x;
+		int y;
 		
-		for(int i=0;i<n;i++) {
-			String[] arrData = br.readLine().split("");
-			for(int j=0;j<m;j++) {
-				q.offer(new int[] {i,j});
-				arr[i][j] = Integer.parseInt(arrData[j]);
+		Node(int x, int y){
+			this.x = x;
+			this.y = y;
+		}
+	}
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] arr = br.readLine().split(" ");
+		int n = Integer.parseInt(arr[0]);
+		int m = Integer.parseInt(arr[1]);
+		int[][] map = new int[n][m];
+		int[][] visit = new int[n][m];
+		int[][] len = new int[n][m];
+		int[] dx = {-1, 0, 1, 0};
+		int[] dy = {0, 1, 0, -1};
+		int ans = -1;
+		
+		Queue <Node> q = new LinkedList<>();
+		
+		for(int i = 0; i < n; i++) {
+			String s = br.readLine();
+			for(int j = 0; j < m; j++) {
+				map[i][j] = s.charAt(j) - '0';
 			}
 		}
-		bfs(q);
-		if(count == 0)
-			System.out.println(-1);
-		else
-			System.out.println(arr[n-1][m-1]);
-//		for(int i=0;i<n;i++) {
-//			for(int j=0;j<m;j++) {
-//				System.out.print(arr[i][j]);
-//			}
-//			System.out.println();
-//		}
-	}
-	public static void bfs(Queue<int[]> q) {
+		
+		q.add(new Node(0, 0));
+		visit[0][0] = 1;
+		len[0][0] = 1;
+		
 		while(!q.isEmpty()) {
-			int[] qData = q.poll();
-			visited[qData[0]][qData[1]] = true;
-			for(int i=0;i<4;i++) {
-				int moveX = qData[0]+ dx[i];
-				int moveY = qData[1]+ dy[i];
-				int move2X = moveX + dx[i];
-				int move2Y = moveY + dy[i];
-				if(moveX>=0 && moveY>=0 && moveX<n && moveY<m && visited[moveX][moveY]==false && arr[moveX][moveY] == 0) {
-					if(arr[moveX][moveY] != 1) {
-						visited[moveX][moveY] = true;
-						count++;
-						arr[moveX][moveY] = count;
-					}else if(move2X>=0 && move2Y>=0 && move2X<n && move2Y<m && arr[moveX][moveY] == 1 && arr[move2X][move2Y] == 0 && throwIndex == 0) {
-						throwIndex = 1;
-						visited[moveX][moveY] = true;
-						count++;
-						arr[moveX][moveY] = count;	
+			Node node = q.poll();
+			if(node.x == n - 1 && node.y == m - 1) {
+				ans = len[node.x][node.y];
+				break;
+			}
+			
+			for(int i = 0; i < 4; i++) {
+				int nx = node.x + dx[i];
+				int ny = node.y + dy[i];
+				
+				if(nx >= 0 && ny >= 0 && nx < n && ny < m) {
+					if(map[nx][ny] == 0 && (visit[nx][ny] == 0 || visit[nx][ny] > visit[node.x][node.y])) {
+						visit[nx][ny] = visit[node.x][node.y];
+						len[nx][ny] = len[node.x][node.y] + 1; 
+						q.add(new Node(nx, ny));
+					}
+					else if(map[nx][ny] == 1 && visit[node.x][node.y] <= 1){
+						visit[nx][ny] = visit[node.x][node.y] + 1;
+						len[nx][ny] = len[node.x][node.y] + 1; 
+						q.add(new Node(nx, ny));
 					}
 				}
 			}
 		}
+		System.out.println(ans);
 	}
-
 }
