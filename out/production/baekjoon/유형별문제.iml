@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/구간합" isTestSource="false" packagePrefix="sumOfInterval" />
+      <sourceFolder url="file://$MODULE_DIR$/그리디" isTestSource="false" packagePrefix="greedy" />
+      <sourceFolder url="file://$MODULE_DIR$/부분수열" isTestSource="false" packagePrefix="conceptProblem" />
+      <sourceFolder url="file://$MODULE_DIR$/순열" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/슬라이딩윈도우" isTestSource="false" packagePrefix="slidingWindow" />
+      <sourceFolder url="file://$MODULE_DIR$/시뮬레이션" isTestSource="false" packagePrefix="simulation" />
+      <sourceFolder url="file://$MODULE_DIR$/우선순위큐" isTestSource="false" packagePrefix="priorityQueue" />
+      <sourceFolder url="file://$MODULE_DIR$/위상정렬" isTestSource="false" packagePrefix="TopologySort" />
+      <sourceFolder url="file://$MODULE_DIR$/이분탐색" isTestSource="false" packagePrefix="binarySearch" />
+      <sourceFolder url="file://$MODULE_DIR$/재귀" isTestSource="false" packagePrefix="rescursion" />
+      <sourceFolder url="file://$MODULE_DIR$/최단거리" isTestSource="false" packagePrefix="MinPath" />
+      <sourceFolder url="file://$MODULE_DIR$/최소신장트리" isTestSource="false" packagePrefix="MST" />
+      <sourceFolder url="file://$MODULE_DIR$/투포인터" isTestSource="false" packagePrefix="twoPointer" />
+      <sourceFolder url="file://$MODULE_DIR$/트리" isTestSource="false" packagePrefix="tree" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
