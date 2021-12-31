@@ -1,12 +1,16 @@
-# JAVA Algorithm
-
 ## Directory
+```bash
+├── JAVA
+│   └── src
+│       ├── baekjoon      : 백준 단계별 문제 풀이
+│       ├── solvedClass   : solved.ac class별 문제 풀이
+│       └── AlgorithmType : 알고리즘 유형별 풀이
+└── Python
+    └── src
+        └── AlgorithmType : 알고리즘 유형별 풀이
+```
 
-- backjoon : 백준 알고리즘 단계별 풀이
-- dataStructure : 자료구조, 알고리즘 예제 정리
-- programmers : 프로그래머스 풀이
-
-# 알고리즘 성능 표현 방법
+# Algorithm
 > 효율적인 알고리즘 - 시간이 짧고, 자원을 적게 사용  
   
 ## 1. 시간 복잡도 <b>(1초에 약 3억 ~ 5억)</b>
