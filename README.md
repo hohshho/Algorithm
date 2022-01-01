@@ -51,7 +51,7 @@ O(logN) / 2진 검색
 O(sqrt(N)) / 소수 탐색
 
 ## Tip!!  
----
+
 문제를 풀 수 있는 시간이 1초인 경우
 
 - N의 범위 500인 경우 : O(n<sup>3</sup>)
@@ -69,7 +69,6 @@ O(sqrt(N)) / 소수 탐색
 (큰 상수가 나올 수 있는 경우 조심)
 
 ## Tip!!
----
 
 int a[1000] : 4KB  
 int a[1000000] : 4MB  
@@ -81,7 +80,6 @@ int a[2000][2000] : 16MB
 ## 수행 시간 측정 소스코드
 
 ### Python
----
 
 ```python
 import time
@@ -95,7 +93,6 @@ print("time : ", end_time - start_time) # 출력
 ```
 
 ### JAVA
----
 
 ```java
 
@@ -125,7 +122,7 @@ print("time : ", end_time - start_time) # 출력
 
 # 1. 해시
 
-## JAVA : HashMap<Integer,String> map = new HashMap<>(10);
+**JAVA : HashMap<Integer,String> map = new HashMap<>(10)**
 
 ## 특징
 
@@ -151,7 +148,7 @@ print("time : ", end_time - start_time) # 출력
 
 # Stack
 
-## Stack<T> stack = new Stack<>();
+**JAVA : Stack<T> stack = new Stack<>();**
 
 ## 특징
 
@@ -171,7 +168,7 @@ print("time : ", end_time - start_time) # 출력
 
 # Queue
 
-## Queue<T> queue = new LinkedList<>();
+**JAVA : Queue<T> queue = new LinkedList<>();**
 
 ## 특징
 
@@ -191,7 +188,7 @@ print("time : ", end_time - start_time) # 출력
 
 # Deque
 
-## Deque<T> deque = new LinkedList<>();
+**JAVA : Deque<T> deque = new LinkedList<>();**
 
 ## 특징
 
@@ -211,8 +208,12 @@ print("time : ", end_time - start_time) # 출력
 # Heap
 
 - 최대값이나 최소값을 빠르게 찾기위해 고안된 완전이진트리를 기반으로한 자료구조
-## MinHeap : 가장 작은값이 root노드
-##MaxHeap : 가장 큰 값이 root노드
+
+```
+MinHeap : 가장 작은값이 root노드
+MaxHeap : 가장 큰 값이 root노드
+```
+
 - 노드 추가 시, 가장 마지막에 추가하고 위의 노드와 비교하는 방식으로 정렬
 - 노드 삭제 시, root노드의 값을 빼고 정렬하는 방식
 
