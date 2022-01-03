@@ -1,4 +1,4 @@
-package slidingWindow;
+package 슬라이딩윈도우;
 
 import java.io.BufferedReader;
 import java.io.IOException;

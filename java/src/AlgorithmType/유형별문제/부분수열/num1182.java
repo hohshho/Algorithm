@@ -1,4 +1,4 @@
-package conceptProblem;
+package 부분수열;
 
 public class num1182 {
 
