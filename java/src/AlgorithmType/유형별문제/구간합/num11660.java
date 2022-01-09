@@ -1,4 +1,4 @@
-package 구간합;
+package sumOfInterval;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package 최단거리;
+package MinPath;
 
 import java.io.BufferedReader;
 import java.io.IOException;

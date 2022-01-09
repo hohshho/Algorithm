@@ -1,4 +1,4 @@
-package 슬라이딩윈도우;
+package slidingWindow;
 
 public class num2492 {
 

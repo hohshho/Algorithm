@@ -1,4 +1,4 @@
-package 트리;
+package tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

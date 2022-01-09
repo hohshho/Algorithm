@@ -1,4 +1,4 @@
-package 이분탐색;
+package binarySearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;

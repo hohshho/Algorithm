@@ -1,4 +1,4 @@
-package 재귀;
+package rescursion;
 import java.math.BigInteger;
 import java.util.Scanner;
  

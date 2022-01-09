@@ -1,4 +1,4 @@
-package 위상정렬;
+package TopologySort;
 
 import java.io.BufferedReader;
 import java.io.IOException;

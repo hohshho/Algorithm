@@ -1,4 +1,4 @@
-package 최소신장트리;
+package MST;
 
 import java.io.BufferedReader;
 import java.io.IOException;

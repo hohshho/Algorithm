@@ -1,4 +1,4 @@
-package 우선순위큐;
+package priorityQueue;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package 투포인터;
+package twoPointer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

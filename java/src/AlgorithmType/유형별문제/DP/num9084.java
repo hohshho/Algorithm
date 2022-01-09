@@ -20,14 +20,14 @@ public class num9084 {
 
 	public static int calc(int n){
 		int res;
-		int[] dp = new int[n];
+		int[] dp = new int[n<3 ? 3 : n];
 
 		dp[0] = 1;
 		dp[1] = 2;
 		dp[2] = 4;
 
 		if(n <= 3){
-			res = dp[dp.length];
+			res = dp[n-1];
 		}else{
 			res = calc(n-1) + calc(n-2) + calc(n-3);
 		}
