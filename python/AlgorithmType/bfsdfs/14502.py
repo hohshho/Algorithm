@@ -18,7 +18,6 @@ for i in range(n):
 
 iter_data = list(itertools.combinations(data,3))
 
-
 def virus(x,y):
     for i in range(4):
         nx = x+dx[i]
@@ -30,15 +29,12 @@ def virus(x,y):
                 after_lab[nx][ny] = 2
                 virus(nx,ny)
 
-
-
 def count_safe(now):
     safe_count = 0
     for i in range(n):
         safe_count += now[i].count(0)
 
     return safe_count
-
 
 result = 0
 for new_wall in iter_data:
@@ -52,6 +48,5 @@ for new_wall in iter_data:
                 virus(i,j)
 
     result = max(result,count_safe(after_lab))
-
 
 print(result)
