@@ -34,8 +34,6 @@
       <sourceFolder url="file://$MODULE_DIR$/7. 문자열" isTestSource="false" packagePrefix="package8" />
       <sourceFolder url="file://$MODULE_DIR$/8. 수학1" isTestSource="false" packagePrefix="package8" />
       <sourceFolder url="file://$MODULE_DIR$/9. 수학2" isTestSource="false" packagePrefix="package9" />
-      <sourceFolder url="file://$MODULE_DIR$/개념문제" isTestSource="false" packagePrefix="group" />
-      <sourceFolder url="file://$MODULE_DIR$/유형별문제" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

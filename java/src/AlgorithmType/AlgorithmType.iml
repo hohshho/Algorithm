@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/개념문제" isTestSource="false" packagePrefix="group" />
       <sourceFolder url="file://$MODULE_DIR$/유형별문제" isTestSource="false" />
     </content>
