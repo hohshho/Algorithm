@@ -42,15 +42,8 @@ public class num14502 {
             }
         }
 
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < M; j++) {
-                if(map[i][j] == 0) {
-                    map[i][j] = 1;
-                    makeWall(1);
-                    map[i][j] = 0;
-                }
-            }
-        }
+                    makeWall(0);
+
         System.out.println(res);
 
     }
