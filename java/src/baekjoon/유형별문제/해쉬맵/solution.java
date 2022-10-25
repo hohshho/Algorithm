@@ -1,63 +1,130 @@
 package HashMap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.regex.Pattern;
+import java.util.LinkedList;
 
 public class solution {
-    public static String solution() {
-        String[] registered_list = {"cow", "cow1", "cow2", "cow3", "cow4", "cow9", "cow8", "cow7", "cow6", "cow5"};
-        String new_id = "cow";
+    static int N, M;
+    static long answer;
+    static LinkedList<int[]> q = new LinkedList<>();
+    static LinkedList<int[]> startPointList = new LinkedList<>();
+    static int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};
+    static int[][] indexMaps;
+    static boolean[][] visited;
 
-        String answer = "";
+    public long solution(int[][] maps) {
+        answer = 0;
 
-        // 1.
-//        if(!Arrays.asList(registered_list).contains(new_id)) {
-//            return new_id;
-//        }
+        N = maps.length;
+        M = maps[0].length;
 
-        // TODO: 잘못된 값 필요하면 여기서
+        makeArea(maps);
 
-        // 2.
-        String newS = new_id.replaceAll("[0-9]","");
-        String newN = new_id.replaceAll("[^0-9]","");
-
-        ArrayList<Integer> list = new ArrayList<Integer>();
-
-        for(String item : registered_list) {
-            if(item.contains(newS)){
-                String itemNum = item.replaceAll("[^0-9]","");
-
-                if(itemNum.length() != 0) {
-                    list.add(Integer.parseInt(itemNum));
-                }
-            }
-        }
-
-        Collections.sort(list);
-
-        int index = list.get(0);
-        for(int i=1; i<list.size(); i++){
-            if(list.get(i) != index + 1) {
-                answer = newS + (index + 1);
-                break;
-            }
-
-            index++;
-        }
-
+        calcMap();
 
         return answer;
     }
 
-    public static int stoi(String s){
+    static void calcMap() {
+        visited = new boolean[N][M];
+
+        while(!startPointList.isEmpty()){
+            int result = 0;
+
+            int[] startPoint = startPointList.poll();
+            int sx = startPoint[0];
+            int sy = startPoint[1];
+
+            q = new LinkedList<>();
+            q.add(new int[]{sx, sy});
+
+            while(!q.isEmpty()) {
+                int[] point = q.poll();
+                int px = point[0];
+                int py = point[1];
+                int value = 4; // 초기값
+                visited[px][py] = true;
+
+                for (int i = 0; i < 4; i++) {
+                    int cx = px + dx[i];
+                    int cy = py + dy[i];
+
+                    if (checkValue(cx, cy)) {
+                        if (indexMaps[cx][cy] != 0) {
+                            value--;
+
+                            if(!visited[cx][cy]){
+                                q.add(new int[]{cx, cy});
+                                visited[cx][cy] = true;
+                            }
+                        }
+                    }
+                }
+
+                result += value;
+            }
+
+            answer = result > answer ? result : answer;
+        }
+
+    }
+
+
+    static void makeArea(int[][] maps) {
+        visited = new boolean[N][M];
+        indexMaps = new int[N][M];
+        int area = 1;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if(!visited[i][j]) {
+                    indexMaps[i][j] = 0;
+                }
+                if (maps[i][j] != 0 && visited[i][j] == false) {
+                    indexMaps[i][j] = area;
+                    startPointList.add(new int[] {i, j});
+                    changeArea(i, j, area, maps);
+                    area++;
+                }
+            }
+        }
+    }
+
+    static void changeArea(int x, int y, int area, int[][] maps) {
+        q = new LinkedList<>();
+        q.add(new int[]{x, y});
+        while (!q.isEmpty()) {
+            int[] point = q.poll();
+            x = point[0];
+            y = point[1];
+            visited[x][y] = true;
+
+            for (int i = 0; i < 4; i++) {
+                int cx = x + dx[i];
+                int cy = y + dy[i];
+
+                if (checkValue(cx, cy)) {
+                    if (maps[cx][cy] != 0 && !visited[cx][cy]) {
+                        indexMaps[cx][cy] = area;
+                        visited[cx][cy] = true;
+                        q.add(new int[]{cx, cy});
+                    }
+                }
+            }
+        }
+    }
+
+    static boolean checkValue(int x, int y) {
+        return x >= 0 && x < N && y >= 0 && y < M;
+    }
+
+    public static int stoi(String s) {
         return Integer.parseInt(s);
     }
 
-    public static void main(String[] args){
-        solution();
+    public static void main(String[] args) {
+        solution a = new solution();
+        System.out.println(a.solution(new int[][]{{1, 0, 1, 1}, {0, 0, 1, 1}, {1, 1, 0, 1}, {1, 1, 0, 0}}));
 
     }
 }
