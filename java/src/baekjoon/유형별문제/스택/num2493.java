@@ -15,7 +15,7 @@ public class num2493 {
         N = stol(br.readLine());
         String[] input = br.readLine().split(" ");
 
-        for(int i=0; i<N; i++){
+        for (int i=0; i<N; i++) {
             long item = stol(input[i]);
 
             while(!stack.empty()){
