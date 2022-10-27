@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/level1_입출력과사칙연산" isTestSource="false" packagePrefix="package1"/>
+      <sourceFolder url="file://$MODULE_DIR$/level10_재귀" isTestSource="false" packagePrefix="package10" />
+      <sourceFolder url="file://$MODULE_DIR$/level11_브루트 포스" isTestSource="false" packagePrefix="package11" />
+      <sourceFolder url="file://$MODULE_DIR$/level12_정렬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/level13_백트래킹" isTestSource="false" packagePrefix="package13" />
+      <sourceFolder url="file://$MODULE_DIR$/level14_동적 계획법 1" isTestSource="false" packagePrefix="package14" />
+      <sourceFolder url="file://$MODULE_DIR$/level15_그리디" isTestSource="false" packagePrefix="package15" />
+      <sourceFolder url="file://$MODULE_DIR$/level16_정수론,조합론" isTestSource="false" packagePrefix="package16" />
+      <sourceFolder url="file://$MODULE_DIR$/level17_스택" isTestSource="false" packagePrefix="package17" />
+      <sourceFolder url="file://$MODULE_DIR$/level18_큐덱" isTestSource="false" packagePrefix="package18" />
+      <sourceFolder url="file://$MODULE_DIR$/level19_분할정복" isTestSource="false" packagePrefix="package19" />
+      <sourceFolder url="file://$MODULE_DIR$/level2_if문" isTestSource="false" packagePrefix="package2" />
+      <sourceFolder url="file://$MODULE_DIR$/level20_이분탐색" isTestSource="false" packagePrefix="pakcage20" />
+      <sourceFolder url="file://$MODULE_DIR$/level21_우선순위큐" isTestSource="false" packagePrefix="package21" />
+      <sourceFolder url="file://$MODULE_DIR$/level22_동적계획법2" isTestSource="false" packagePrefix="package22" />
+      <sourceFolder url="file://$MODULE_DIR$/level23_DFS와BFS" isTestSource="false" packagePrefix="package23" />
+      <sourceFolder url="file://$MODULE_DIR$/level24_최단경로" isTestSource="false" packagePrefix="package24" />
+      <sourceFolder url="file://$MODULE_DIR$/level25_투포인터" isTestSource="false" packagePrefix="package25" />
+      <sourceFolder url="file://$MODULE_DIR$/level26_동적계획법과최단거리역추적" isTestSource="false" packagePrefix="pakcage26" />
+      <sourceFolder url="file://$MODULE_DIR$/level27_트리" isTestSource="false" packagePrefix="package27" />
+      <sourceFolder url="file://$MODULE_DIR$/level28_유니온파인드" isTestSource="false" packagePrefix="package28" />
+      <sourceFolder url="file://$MODULE_DIR$/level29_최소신장트리" isTestSource="false" packagePrefix="package29" />
+      <sourceFolder url="file://$MODULE_DIR$/level3_for문" isTestSource="false" packagePrefix="package3" />
+      <sourceFolder url="file://$MODULE_DIR$/level33_문자열알고리즘" isTestSource="false" packagePrefix="package33" />
+      <sourceFolder url="file://$MODULE_DIR$/level34_위상정렬" isTestSource="false" packagePrefix="package34" />
+      <sourceFolder url="file://$MODULE_DIR$/level4_while문" isTestSource="false" packagePrefix="package4" />
+      <sourceFolder url="file://$MODULE_DIR$/level5_1차원배열" isTestSource="false" packagePrefix="package6" />
+      <sourceFolder url="file://$MODULE_DIR$/level6_함수" isTestSource="false" packagePrefix="package7" />
+      <sourceFolder url="file://$MODULE_DIR$/level7_문자열" isTestSource="false" packagePrefix="package8" />
+      <sourceFolder url="file://$MODULE_DIR$/level8_수학1" isTestSource="false" packagePrefix="package8" />
+      <sourceFolder url="file://$MODULE_DIR$/level9_수학2" isTestSource="false" packagePrefix="package9" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
