@@ -7,11 +7,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class num2573 {
-    static int N, M, map[][], res, time;
+    static int N, M, map[][], res, time, part;
     static int[] dx = {1, -1, 0, 0}, dy = {0, 0, -1, 1};
     static boolean flag = false, visited[][];
     static Queue<Point> q = new LinkedList<>();
-    static Queue<Point> downQ = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,22 +36,43 @@ public class num2573 {
         }
 
         while (!q.isEmpty()) {
+            visited = new boolean[N][M];
+
+            // 빙산 개수
+            part = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
+                    if (!visited[i][j] && map[i][j] > 0) {
+                        dfs(i, j);
+                        part++;
+                    }
+                }
+            }
+
+            if(part > 1){
+                flag = true;
+                break;
+            } else if(part == 0) {
+                break;
+            }
+
             int size = q.size();
             time++;
-
+            visited = new boolean[N][M];
             // 빙산 처리
             for (int i = 0; i < size; i++) {
                 Point cur = q.poll();
                 int curHeight = map[cur.x][cur.y];
                 int cnt = 0;
-                visited = new boolean[N][M];
+                visited[cur.x][cur.y] = true;
+
 
                 for (int add = 0; add < 4; add++) {
                     int cx = cur.x + dx[add];
                     int cy = cur.y + dy[add];
 
                     if (checkValue(cx, cy)) {
-                        if (map[cx][cy] == 0) {
+                        if (!visited[cx][cy] && map[cx][cy] == 0) {
                             cnt++;
                         }
                     }
@@ -60,40 +80,14 @@ public class num2573 {
 
                 curHeight -= cnt;
 
-                if (curHeight < 0) {
+                if (curHeight <= 0) {
                     curHeight = 0;
+                } else {
+                    q.add(new Point(cur.x, cur.y));
                 }
 
-                downQ.add(new Point(cur.x, cur.y, curHeight));
+                map[cur.x][cur.y] = curHeight;
             }
-
-            while (!downQ.isEmpty()) {
-                Point cur = downQ.poll();
-
-                if (cur.height > 0) {
-                    q.add(cur);
-                }
-
-                map[cur.x][cur.y] = cur.height;
-            }
-
-            int part = 0;
-            for (int i = 0; i < q.size(); i++) {
-                Point cur = q.poll();
-
-                if(!visited[cur.x][cur.y]){
-                    dfs(cur.x, cur.y);
-                    part++;
-                }
-                q.add(cur);
-            }
-
-            if (part > 1) {
-                flag = true;
-                break;
-            }
-            if(part == 0)
-                break;
         }
 
 
@@ -102,6 +96,7 @@ public class num2573 {
 
     public static void dfs(int x, int y) {
         visited[x][y] = true;
+
 
         for (int i = 0; i < 4; i++) {
             int cx = x + dx[i];
@@ -121,18 +116,13 @@ public class num2573 {
     }
 
     public static class Point {
-        int x, y, height;
+        int x, y;
 
         Point(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
-        Point(int x, int y, int height) {
-            this.x = x;
-            this.y = y;
-            this.height = height;
-        }
     }
 
     public static int stoi(String s) {
