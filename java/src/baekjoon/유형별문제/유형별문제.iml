@@ -25,6 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/스택" isTestSource="false" packagePrefix="stack" />
       <sourceFolder url="file://$MODULE_DIR$/완전탐색" isTestSource="false" packagePrefix="bruteFoce" />
       <sourceFolder url="file://$MODULE_DIR$/비트마스킹" isTestSource="false" packagePrefix="bitmasking" />
+      <sourceFolder url="file://$MODULE_DIR$/그래프" isTestSource="false" packagePrefix="graph" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
