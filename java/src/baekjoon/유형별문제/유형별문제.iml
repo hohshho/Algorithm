@@ -26,6 +26,9 @@
       <sourceFolder url="file://$MODULE_DIR$/완전탐색" isTestSource="false" packagePrefix="bruteFoce" />
       <sourceFolder url="file://$MODULE_DIR$/비트마스킹" isTestSource="false" packagePrefix="bitmasking" />
       <sourceFolder url="file://$MODULE_DIR$/그래프" isTestSource="false" packagePrefix="graph" />
+      <sourceFolder url="file://$MODULE_DIR$/수학" isTestSource="false" packagePrefix="math" />
+      <sourceFolder url="file://$MODULE_DIR$/백트래킹" isTestSource="false" packagePrefix="backtracking" />
+      <sourceFolder url="file://$MODULE_DIR$/save" isTestSource="false" packagePrefix="save" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

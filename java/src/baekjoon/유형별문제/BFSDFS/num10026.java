@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class num10026 {
-    static int N, map[][], map2[][], idx, cnt;
+    static int N, map[][], idx, cnt;
     static boolean[][] visited;
     static Queue<int[]> q;
     static int[] dx = {1, -1, 0, 0}, dy = {0, 0, -1, 1};
@@ -17,7 +17,6 @@ public class num10026 {
 
         N = stoi(br.readLine());
         map = new int[N][N];
-        map2 = new int[N][N];
 
         for (int i = 0; i < N; i++) {
             String[] input = br.readLine().split("");
@@ -28,19 +27,28 @@ public class num10026 {
 
                 if (item.equals("B")) {
                     map[i][j] = 1;
-                    map2[i][j] = 1;
                 } else if (item.equals("R")) {
                     map[i][j] = 2;
-                    map2[i][j] = 2;
                 } else if (item.equals("G")) {
                     map[i][j] = 3;
-                    map2[i][j] = 2;
                 }
             }
         }
 
-        bfs();
-        bfs();
+        bfs(0);
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                int item = map[i][j];
+
+                if (item == 3) {
+                    map[i][j] = 2;
+                }
+            }
+        }
+
+        bfs(1);
+
     }
 
     public static void clear() {
@@ -49,9 +57,8 @@ public class num10026 {
         cnt = 0;
     }
 
-    public static void bfs() {
+    public static void bfs(int idx) {
         clear();
-        idx += 1;
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -63,26 +70,19 @@ public class num10026 {
                         int[] point = q.poll();
                         visited[point[0]][point[1]] = true;
                         int item = map[point[0]][point[1]];
-                        if(idx == 2){
-                            item = map2[point[0]][point[1]];
-                        }
 
                         for (int k = 0; k < 4; k++) {
                             int cx = point[0] + dx[k];
                             int cy = point[1] + dy[k];
 
                             if (check(cx, cy)) {
-                                if(visited[cx][cy]) {
+                                if (visited[cx][cy]) {
                                     continue;
                                 }
-                                if(idx == 1) {
-                                    if (!visited[cx][cy] && item == map[cx][cy]) {
-                                        q.add(new int[]{cx, cy});
-                                    }
-                                }else {
-                                    if (!visited[cx][cy] && item == map2[cx][cy]) {
-                                        q.add(new int[]{cx, cy});
-                                    }
+
+                                if (!visited[cx][cy] && item == map[cx][cy]) {
+                                    visited[cx][cy] = true;
+                                    q.add(new int[]{cx, cy});
                                 }
                             }
                         }
