@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 
-public class num1756 {
+public class num1759 {
     static int L, C;
     static String[] list;
     static ArrayList<String> res = new ArrayList<>();
-    static HashSet<String> map = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,8 +33,7 @@ public class num1756 {
 
     public static void getStringList(int depth, String password, int index, int[] check) {
         if (depth == L) {
-            if (!map.contains(password) && check[0] >= 1 && check[1] >= 2) {
-                map.add(password);
+            if (check[0] >= 1 && check[1] >= 2) {
                 res.add(password);
             }
             return;
