@@ -435,7 +435,7 @@ PriorityQueue<Integer> maxHeap = PriorityQueue<>(new Comparator<Integer>(){
 
 - 실수형 사용할 땐 double 쓰는게 좋다!
 
-- 문자열 추가 : String class사용 < <b>StringBuilder</b> class 사용
+- 문자열 추가 : String class사용 *StringBuilder* class 사용
 
 - int형 자리수 구하기 : Math.log(숫자)+1;
 - 거듭제곱 구하기 : Math.paw(a, b);
