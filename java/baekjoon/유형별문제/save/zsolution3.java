@@ -9,6 +9,8 @@ public class zsolution3 {
 
     static class solution {
         public int[] solution(int[][] data) {
+            double randomValue = Math.ceil(Math.random() * 100);
+
             n = data.length;
             int[] answer = new int[n];
 
