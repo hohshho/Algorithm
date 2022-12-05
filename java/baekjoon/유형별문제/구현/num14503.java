@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Queue;
 
 public class num14503 {
+    static int[][] map;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -17,7 +19,7 @@ public class num14503 {
 
         int N = stoi(NM[0]); // 세로 y
         int M = stoi(NM[1]); // 가로 x
-        int[][] map = new int[N][M];
+        map = new int[N][M];
 
         for (int i = 0; i < N; i++) {
             String[] line = br.readLine().split(" ");
@@ -27,7 +29,7 @@ public class num14503 {
             }
         }
 
-        Robot robot = new Robot(N, M, stoi(XYD[0]), stoi(XYD[1]), stoi(XYD[2]), map);
+        Robot robot = new Robot(N, M, stoi(XYD[0]), stoi(XYD[1]), stoi(XYD[2]));
 
         robot.run();
 
@@ -62,10 +64,7 @@ public class num14503 {
                 return codeMap.get(code);
             }
 
-            static int getCode(final Direction direction) {
-                return direction.code;
-            }
-
+            // 반시계 방향 회전
             Direction rotate() {
                 if (this == NORTH) {
                     return WEST;
@@ -73,57 +72,76 @@ public class num14503 {
                 return this.getType(this.code - 1);
             }
 
-            Direction back() {
-                return this.getType((this.code + 2) % 4);
+            int getNextX(int x) {
+                return x + dx[this.code];
             }
 
-            int getNextX(Direction direction, int x) {
-                return x + dx[Direction.getCode(direction)];
+            int getNextY(int y) {
+                return y + dy[this.code];
             }
 
-            int getNextY(Direction direction, int y) {
-                return y + dy[Direction.getCode(direction)];
+            int getBackX(int x) {
+                return x + dx[(this.code + 2) % 4];
+            }
+
+            int getBackY(int y) {
+                return y + dy[(this.code + 2) % 4];
             }
         }
 
         class State {
-            int x, y;
+            int x, y, nx, ny, bx, by;
             Direction direction;
 
             State(int x, int y, Direction direction) {
                 this.x = x;
                 this.y = y;
+                this.nx = direction.getNextX(x);
+                this.ny = direction.getNextY(y);
+                this.bx = direction.getBackX(x);
+                this.by = direction.getBackY(y);
                 this.direction = direction;
             }
 
             void changeRocate() {
                 this.direction = direction.rotate();
+                this.nx = direction.getNextX(x);
+                this.ny = direction.getNextY(y);
+                this.bx = direction.getBackX(x);
+                this.by = direction.getBackY(y);
             }
 
-            void go() {
-
+            boolean checkNextArea() {
+                // map 범위 검사, 벽 검사, 청소 여부
+                return nx >= 0 && ny >= 0 && nx < M && ny < N && map[ny][nx] != 1 && map[ny][nx] != -1;
             }
 
-            void back() {
+            boolean checkBackArea() {
+                // map 범위 검사, 벽 검사, 청소 여부
+                return bx >= 0 && by >= 0 && bx < M && by < N && map[by][bx] != 1;
+            }
 
+            State go() {
+                return new State(nx, ny, this.direction);
+            }
+
+            State back() {
+                return new State(bx, by, this.direction);
             }
         }
 
         // action에 대한 Queue
         Queue<State> taskQueue = new LinkedList<>();
-        // map 정보
-        int[][] map;
         // 청소 된 칸 수
         int cleanAreaCnt;
         // N, M
         int N, M;
 
-        Robot(int N, int M, int y, int x, int direction, int[][] map) {
+        Robot(int N, int M, int y, int x, int direction) {
             this.N = N;
             this.M = M;
 
             taskQueue.add(new State(x, y, Direction.getType(direction)));
-            this.map = map.clone();
             cleanAreaCnt = 0;
         }
 
@@ -142,11 +160,8 @@ public class num14503 {
                 while (wallCnt != Direction.values().length) {
                     cur.changeRocate();
 
-                    int nx = cur.direction.getNextX(cur.direction, cur.x);
-                    int ny = cur.direction.getNextY(cur.direction, cur.y);
-
-                    if (checkArea(nx, ny, cur.direction, 1)) {
-                        taskQueue.add(new State(nx, ny, cur.direction));
+                    if (cur.checkNextArea()) {
+                        taskQueue.add(cur.go());
                         break;
                     }
 
@@ -159,31 +174,15 @@ public class num14503 {
                 }
 
                 // 3. 모두 청소가 된 경우
-                int bx = cur.direction.getNextX(cur.direction.back(), cur.x);
-                int by = cur.direction.getNextY(cur.direction.back(), cur.y);
-
                 //  3.1 뒤가 벽이 아닐 경우 1칸 후진
-                if (checkArea(bx, by, cur.direction, 0)) {
-                    if (map[by][bx] != 1) {
-                        taskQueue.add(new State(bx, by, cur.direction));
-                        continue;
-                    }
+                if (cur.checkBackArea()) {
+                    taskQueue.add(cur.back());
+                    continue;
                 }
 
                 //  3.2 뒤가 벽일 경우 종료
                 return;
             }
-        }
-
-        // flag = 1 : 청소 여부 검사 O , 0 : 청소 여부 검사 X
-        boolean checkArea(int x, int y, Direction direction, int flag) {
-            // map 범위 검사, 벽 검사
-            boolean check = x >= 0 && y >= 0 && x < M && y < N && map[y][x] != 1;
-            if (flag == 0) {
-                return check;
-            }
-            // 청소 여부 검사
-            return check && map[y][x] != -1;
         }
 
         int getCleanAreaCnt() {
