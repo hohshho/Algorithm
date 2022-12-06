@@ -72,61 +72,73 @@ public class num14503 {
                 return this.getType(this.code - 1);
             }
 
-            int getNextX(int x) {
-                return x + dx[this.code];
+            // 반대 방향
+            Direction back() {
+                return this.getType((this.code + 2) % 4);
             }
 
-            int getNextY(int y) {
-                return y + dy[this.code];
+            int getIncrementX(Direction direction) {
+                return dx[direction.code];
             }
 
-            int getBackX(int x) {
-                return x + dx[(this.code + 2) % 4];
+            int getIncrementY(Direction direction) {
+                return dy[direction.code];
             }
+        }
 
-            int getBackY(int y) {
-                return y + dy[(this.code + 2) % 4];
+        class Point {
+            int x, y;
+            Point(int x, int y){
+                this.x = x;
+                this.y = y;
             }
         }
 
         class State {
-            int x, y, nx, ny, bx, by;
+            Point cur, next, back;
             Direction direction;
 
             State(int x, int y, Direction direction) {
-                this.x = x;
-                this.y = y;
-                this.nx = direction.getNextX(x);
-                this.ny = direction.getNextY(y);
-                this.bx = direction.getBackX(x);
-                this.by = direction.getBackY(y);
+                this.cur = new Point(x, y);
                 this.direction = direction;
+                this.next = getNext();
+                this.back = getBack();
             }
 
             void changeRocate() {
                 this.direction = direction.rotate();
-                this.nx = direction.getNextX(x);
-                this.ny = direction.getNextY(y);
-                this.bx = direction.getBackX(x);
-                this.by = direction.getBackY(y);
+                this.next = getNext();
+                this.back = getBack();
             }
 
             boolean checkNextArea() {
                 // map 범위 검사, 벽 검사, 청소 여부
-                return nx >= 0 && ny >= 0 && nx < M && ny < N && map[ny][nx] != 1 && map[ny][nx] != -1;
+                return next.x >= 0 && next.y >= 0 && next.x < M && next.y < N && map[next.y][next.x] != 1 && map[next.y][next.x] != -1;
             }
 
             boolean checkBackArea() {
-                // map 범위 검사, 벽 검사, 청소 여부
-                return bx >= 0 && by >= 0 && bx < M && by < N && map[by][bx] != 1;
+                // map 범위 검사, 벽 검사
+                return back.x >= 0 && back.y >= 0 && back.x < M && back.y < N && map[back.y][back.x] != 1;
             }
 
             State go() {
-                return new State(nx, ny, this.direction);
+                return new State(next.x, next.y, this.direction);
             }
 
             State back() {
-                return new State(bx, by, this.direction);
+                return new State(back.x, back.y, this.direction);
+            }
+
+            Point getNext(){
+                int nx = cur.x + direction.getIncrementX(direction);
+                int ny = cur.y + direction.getIncrementY(direction);
+                return new Point(nx, ny);
+            }
+
+            Point getBack() {
+                int bx = cur.x + direction.getIncrementX(direction.back());
+                int by = cur.y + direction.getIncrementY(direction.back());
+                return new Point(bx, by);
             }
         }
 
@@ -147,21 +159,21 @@ public class num14503 {
 
         void run() {
             while (!taskQueue.isEmpty()) {
-                State cur = taskQueue.poll();
+                State state = taskQueue.poll();
 
                 // 1. 현재 위치 청소
-                if (map[cur.y][cur.x] == 0) {
+                if (map[state.cur.y][state.cur.x] == 0) {
                     cleanAreaCnt++;
+                    map[state.cur.y][state.cur.x] = -1;
                 }
-                map[cur.y][cur.x] = -1;
 
                 // 2. 청소할 방향 탐색, 작업 추가
                 int wallCnt = 0;
                 while (wallCnt != Direction.values().length) {
-                    cur.changeRocate();
+                    state.changeRocate();
 
-                    if (cur.checkNextArea()) {
-                        taskQueue.add(cur.go());
+                    if (state.checkNextArea()) {
+                        taskQueue.add(state.go());
                         break;
                     }
 
@@ -175,8 +187,8 @@ public class num14503 {
 
                 // 3. 모두 청소가 된 경우
                 //  3.1 뒤가 벽이 아닐 경우 1칸 후진
-                if (cur.checkBackArea()) {
-                    taskQueue.add(cur.back());
+                if (state.checkBackArea()) {
+                    taskQueue.add(state.back());
                     continue;
                 }
 
