@@ -90,6 +90,7 @@ public class num21608 {
 
             } else if (checkValueMap[x][y] == max) {
                 possiblePoint.add(new Point(x, y, blankCount, checkValueMap[x][y]));
+                continue;
             }
         }
 

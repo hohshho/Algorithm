@@ -101,14 +101,14 @@ public class num14503 {
             State(int x, int y, Direction direction) {
                 this.cur = new Point(x, y);
                 this.direction = direction;
-                this.next = getNext();
-                this.back = getBack();
+                this.next = getNextPoint();
+                this.back = getBackPoint();
             }
 
             void changeRocate() {
                 this.direction = direction.rotate();
-                this.next = getNext();
-                this.back = getBack();
+                this.next = getNextPoint();
+                this.back = getBackPoint();
             }
 
             boolean checkNextArea() {
@@ -121,6 +121,7 @@ public class num14503 {
                 return back.x >= 0 && back.y >= 0 && back.x < M && back.y < N && map[back.y][back.x] != 1;
             }
 
+            // create
             State go() {
                 return new State(next.x, next.y, this.direction);
             }
@@ -129,13 +130,13 @@ public class num14503 {
                 return new State(back.x, back.y, this.direction);
             }
 
-            Point getNext(){
+            Point getNextPoint(){
                 int nx = cur.x + direction.getIncrementX(direction);
                 int ny = cur.y + direction.getIncrementY(direction);
                 return new Point(nx, ny);
             }
 
-            Point getBack() {
+            Point getBackPoint() {
                 int bx = cur.x + direction.getIncrementX(direction.back());
                 int by = cur.y + direction.getIncrementY(direction.back());
                 return new Point(bx, by);
