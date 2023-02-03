@@ -11,16 +11,16 @@ public class num5648 {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         int N = Integer.parseInt(sc.next());
-        Long[] arr = new Long[N];
+        Long[][] arr = new Long[N][N];
 
         for (int i = 0; i < N; i++) {
-            arr[i] = reverseStol(sc.next());
+            arr[i][i] = reverseStol(sc.next());
         }
 
         Arrays.sort(arr);
 
         sb.setLength(0);
-        for(Long item : arr){
+        for(Long[] item : arr){
             sb.append(item + "\n");
         }
 

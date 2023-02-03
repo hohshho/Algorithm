@@ -49,7 +49,7 @@ public class num20056 {
             for (int fireIdx : liveFires) {
                 Fire fire = fireHashMap.get(fireIdx);
 
-                fire.x = ;
+//                fire.x = ;
                 map[fire.y][fire.x].add(fireIdx);
             }
 
