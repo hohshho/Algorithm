@@ -27,26 +27,26 @@ public class num1644 {
 	
 	public static void getCountResult() {
 		while(true) {
-			if(sum>=N) sum-=primeList.get(s++);
-			else if(e == primeList.size()) break;
-			else sum+=primeList.get(e++);
-			if(sum == N) count++;	
+			if (sum >= N) sum -= primeList.get(s++);
+			else if (e == primeList.size()) break;
+			else sum += primeList.get(e++);
+			if (sum == N) count++;
 		}
 	}
 	
 	public static void getPrimeNumber() {
-		primeCheckArr[0] = primeCheckArr[1] = true;  
-		
-        for(int i=2; i*i<=N; i++){
-            if(!primeCheckArr[i]) {
-            	for(int j=i*i; j<=N; j+=i)
-            		primeCheckArr[j]=true;                
-            }
-        }
-        
-        for(int i=1; i<=N;i++){
-        	if(!primeCheckArr[i]) primeList.add(i); 
-        }
+		primeCheckArr[0] = primeCheckArr[1] = true;
+
+		for (int i = 2; i * i <= N; i++) {
+			if (!primeCheckArr[i]) {
+				for (int j = i * i; j <= N; j += i)
+					primeCheckArr[j] = true;
+			}
+		}
+
+		for (int i = 1; i <= N; i++) {
+			if (!primeCheckArr[i]) primeList.add(i);
+		}
 	}
 	
 	public static int stoi(String string) {
