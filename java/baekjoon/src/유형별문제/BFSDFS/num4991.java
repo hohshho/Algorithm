@@ -13,7 +13,7 @@ public class num4991 {
     static char[][] map;
     static ArrayList<ArrayList<Node>> distance;
     static StringBuilder sb = new StringBuilder();
-    static LinkedList<Node> list = new LinkedList<>();
+    static LinkedList<Node> list; // o * 저장 할 리스트
     static boolean[][] visited;
     static int[] dx = {0, 1, 0, -1}, dy = {1, 0, -1, 0};
     static boolean[] checked;
@@ -36,6 +36,8 @@ public class num4991 {
             map = new char[Y][X];
             max = 0;
             idx = 0;
+            res = Integer.MAX_VALUE;
+            list = new LinkedList<>();
 
             for (int i = 0; i < Y; i++) {
                 map[i] = br.readLine().toCharArray().clone();
@@ -62,6 +64,7 @@ public class num4991 {
             for (int i = 0; i < list.size() - 1; i++) {
                 for (int j = i + 1; j < list.size(); j++) {
                     int weight = searchDistance(i, j);
+                    if (weight == -1) continue;
                     distance.get(i).add(new Node(j, weight));
                     distance.get(j).add(new Node(i, weight));
                 }
@@ -70,7 +73,7 @@ public class num4991 {
             // 2. 경우의 수 생성(순열)
             checked = new boolean[list.size()];
             checked[0] = true;
-            permutation(1, new int[list.size()], 0);
+            permutation(0, 0, 0);
 
             System.out.println(res == Integer.MAX_VALUE ? -1 : res);
         }
@@ -78,20 +81,17 @@ public class num4991 {
         System.out.println(sb.toString());
     }
 
-    static void permutation(int selectedIdx, int[] selected, int sum) {
-        if (selectedIdx == selected.length) {
+    static void permutation(int start, int depth, int sum) {
+        if (depth == list.size() - 1) {
             res = Math.min(res, sum);
             return;
         }
 
-        for (int i = 1; i < list.size(); i++) {
-            if (checked[i]) continue;
-
-            checked[i] = true;
-            selected[selectedIdx] = i;
-            sum += distance.get(selected[selectedIdx -1]).get(i).weight;
-            permutation(i, selected, sum);
-            checked[i] = false;
+        for(Node next : distance.get(start)) {
+            if(checked[next.idx]) continue;
+            checked[next.idx] = true;
+            permutation(next.idx, depth + 1, sum + next.weight);
+            checked[next.idx] = false;
         }
     }
 
