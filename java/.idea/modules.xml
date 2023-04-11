@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/java.iml" filepath="$PROJECT_DIR$/.idea/java.iml" />
       <module fileurl="file://$PROJECT_DIR$/leetcode/leetcode.iml" filepath="$PROJECT_DIR$/leetcode/leetcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/programmers/programmers.iml" filepath="$PROJECT_DIR$/programmers/programmers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/softeer/softeer.iml" filepath="$PROJECT_DIR$/softeer/softeer.iml" />
     </modules>
   </component>
 </project>
