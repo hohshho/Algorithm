@@ -3,9 +3,9 @@ SELECT BOARD_ID, WRITER_ID, TITLE, PRICE,
                 THEN "판매중"
             ELSE
                 CASE WHEN STATUS = "RESERVED"
-                         THEN "예약중"
+                     THEN "예약중"
                      ELSE "거래완료"
-                    END
+                     END
            END AS "STATUS"
 FROM USED_GOODS_BOARD
 WHERE CREATED_DATE = "2022-10-05"

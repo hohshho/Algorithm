@@ -4,27 +4,26 @@ import java.io.*;
 import java.util.*;
 
 public class num17835 {
-    static int N, M, K;
-    static long LNF = Long.MAX_VALUE, res = 0, resLen = 0;
-    static boolean[] visited;
+    static int N, M, K, res;
+    static long LNF = Long.MAX_VALUE, resDistance;
     static long[] dist;
     static ArrayList<ArrayList<Edge>> adj = new ArrayList<ArrayList<Edge>>();
     static PriorityQueue<Edge> pq = new PriorityQueue<>();
+    static HashSet<Integer> interviewRooms = new HashSet();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        String[] NMK = br.readLine().split(" ");
-        N = stoi(NMK[0]);
-        M = stoi(NMK[1]);
-        K = stoi(NMK[2]);
+        N = stoi(st.nextToken());
+        M = stoi(st.nextToken());
+        K = stoi(st.nextToken());
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i <= N; i++) {
             adj.add(new ArrayList<Edge>());
         }
-        visited = new boolean[N];
-        dist = new long[N];
-        Arrays.fill(visited, false);
+
+        dist = new long[N + 1];
         Arrays.fill(dist, LNF);
 
         // 면접장으로 부터 먼거리 찾기위해 순서 변경
@@ -37,17 +36,41 @@ public class num17835 {
             adj.get(end).add(new Edge(start, weight));
         }
 
+        st = new StringTokenizer(br.readLine());
+        while (st.hasMoreTokens()) {
+            int interview = stoi(st.nextToken());
+            interviewRooms.add(interview);
+            pq.add(new Edge(interview, 0));
+            dist[interview] = 0;
+        }
+
         dijkstra();
 
-        // TODO: + 1 해야함
-        System.out.println();
+        for (int i = 1; i <= N; i++) {
+            if (resDistance < dist[i]) {
+                resDistance = dist[i];
+                res = i;
+            }
+        }
         System.out.println(res);
+        System.out.println(resDistance);
     }
 
     public static void dijkstra() {
+        while (!pq.isEmpty()) {
+            Edge cur = pq.poll();
 
+            if (dist[cur.e] < cur.weight) continue;
 
+            ArrayList<Edge> cities = adj.get(cur.e);
+            for (Edge city : cities) {
+                if (dist[city.e] > city.weight + cur.weight) {
+                    dist[city.e] = city.weight + cur.weight;
+                    pq.add(new Edge(city.e, dist[city.e]));
+                }
+            }
 
+        }
     }
 
     static class Edge implements Comparable<Edge> {

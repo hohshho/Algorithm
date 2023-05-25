@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class num1269 {
     static HashMap<Integer, Integer> A = new HashMap<>();
@@ -19,6 +20,7 @@ public class num1269 {
         N = stoi(input[0]);
         M = stoi(input[1]);
 
+        HashSet<String> set = new HashSet<>();
         String[] Alist = br.readLine().split(" ");
         String[] Blist = br.readLine().split(" ");
 
