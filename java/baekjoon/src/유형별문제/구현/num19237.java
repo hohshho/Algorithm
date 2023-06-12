@@ -9,9 +9,7 @@ public class num19237 {
     static int N, M, k, res;
     // 1 - 위, 2 - 아래, 3 - 왼쪽, 4 - 오른쪽
     static int[] dx = {0, 0, 0, -1, 1}, dy = {0, -1, 1, 0, 0};
-    static LinkedList<Point> smellList = new LinkedList<>();
     static HashMap<Integer, Shark> sharks = new HashMap<>();
-    static HashSet<String> sharkSet;
     static Point[][] map;
 
     public static void main(String[] args) throws IOException {
@@ -82,12 +80,10 @@ public class num19237 {
             Shark shark = sharks.get(sharkIndex);
 
             map[shark.y][shark.x] = new Point(shark.x, shark.y, shark.index, k);
-            smellList.add(new Point(shark.x, shark.y, shark.index, k));
         }
     }
 
     public static void moveShark() {
-        sharkSet = new HashSet<>();
         HashSet<Integer> removeIndex = new HashSet<>();
 
         for (int sharkIndex : sharks.keySet()) {
@@ -128,39 +124,47 @@ public class num19237 {
                 }
             }
 
-            // 3.1 이동 했는데 상어 있는 경우 상어 삭제
-            if(sharkSet.contains((shark.x + dx[nextDirection]) + "" + (shark.y + dy[nextDirection]))) {
-                removeIndex.add(shark.index);
-                continue;
-            }
-
             // 3. 방향으로 상어 이동 (객체라 얕은 복사 / 현재 객체 값 변경)
             shark.setDirection(nextDirection);
             shark.x = shark.x + dx[nextDirection];
             shark.y = shark.y + dy[nextDirection];
-            sharkSet.add(shark.x + "" + shark.y);
         }
 
-        for(int index : removeIndex) {
+        // 같은 위치에 있는 상어 삭제
+        int[][] visited = new int[N][N];
+        LinkedList<Integer> si = new LinkedList<>();
+
+        for (int sharkIndex : sharks.keySet()) {
+            Shark cur = sharks.get(sharkIndex);
+
+            if (visited[cur.y][cur.x] == 0) {
+                visited[cur.y][cur.x] = cur.index;
+                continue;
+            }
+
+            if (visited[cur.y][cur.x] < cur.index) {
+                si.push(cur.index);
+            } else {
+                si.push(visited[cur.y][cur.x]);
+                visited[cur.y][cur.x] = cur.index;
+            }
+        }
+
+        for (int index : si) {
             sharks.remove(index);
         }
     }
 
     public static void updateSmell() {
-        LinkedList<Point> newList = new LinkedList<>();
-        for (int i = 0; i < smellList.size(); i++) {
-            Point cur = smellList.get(i);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(map[i][j] == null) continue;
 
-            if(cur.count == 1) {
-                map[cur.y][cur.x] = null;
-                continue;
+                map[i][j].count -= 1;
+
+                if(map[i][j].count == 0) map[i][j] = null;
             }
-
-            newList.add(new Point(cur.x, cur.y, cur.sharkNum, cur.count - 1));
-            map[cur.y][cur.x] = new Point(cur.x, cur.y, cur.sharkNum, cur.count - 1);
         }
-
-        smellList = (LinkedList<Point>) newList.clone();
     }
 
     public static boolean checkValue(int x, int y) {
