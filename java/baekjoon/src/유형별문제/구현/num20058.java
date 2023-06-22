@@ -37,7 +37,7 @@ public class num20058 {
 
         for (int i = 0; i < Q; i++) {
             // 회전
-            map = divide(L[i]);
+//            map = divide(L[i]);
 
             // 얼음 처리
 //            map = iceProcess();
@@ -49,9 +49,9 @@ public class num20058 {
         System.out.println(res);
     }
 
-    public static int[][] divide(int depth) {
-
-    }
+//    public static int[][] divide(int depth) {
+//
+//    }
 
     public static void rotate(int y, int x, int depth, int[][] tmp) {
 

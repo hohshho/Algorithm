@@ -42,7 +42,7 @@ public class num14502 {
             }
         }
 
-                    makeWall(0);
+        makeWall(0);
 
         System.out.println(res);
 
