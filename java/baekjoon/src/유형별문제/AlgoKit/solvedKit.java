@@ -8,10 +8,10 @@ public class solvedKit {
 
     public static void main(String[] args) throws ParseException {
 
-        System.out.println(getPrimeNumber(7));
+        System.out.println(checkPrimeNumber(121));
     }
 
-    public static boolean getPrimeNumber(int value) {
+    public static boolean checkPrimeNumber(int value) {
         if (value < 2) return false;
 
         for (int i = 2; i * i <= value; i++) {
