@@ -2,7 +2,7 @@ package kit;
 
 import java.util.*;
 
-class graph1 {
+class graph1_가장먼노드 {
     static ArrayList<ArrayList<Integer>> adj = new ArrayList();
     static int res = 0, INF = Integer.MAX_VALUE, max = 0;
 
