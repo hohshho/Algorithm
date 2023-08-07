@@ -1,4 +1,4 @@
-package 유형별문제.최단거리.플로이드;
+package 유형별문제.최단거리;
 
 import java.io.BufferedReader;
 import java.io.IOException;
