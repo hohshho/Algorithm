@@ -20,7 +20,7 @@ public class num2240 {
             // 1번 나무, 2번 나무
             int cur = stoi(br.readLine());
 
-            // 이동하지 않고 자리에 그대로 있는 경우 처리
+            //  않고 자리에 그대로 있는 경우 처리
             if (cur == 1){
                 dp[0][i] = dp[0][i - 1] + 1;
             } else {
