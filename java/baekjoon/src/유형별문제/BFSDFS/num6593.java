@@ -18,7 +18,6 @@ public class num6593 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
-
         inputLRC();
 
         while (L + R + C != 0) {
@@ -51,7 +50,7 @@ public class num6593 {
             Point cur = q.poll();
 
             // end 종료 조건
-            if(map[cur.z][cur.x][cur.y] == 'E') {
+            if(map[cur.z][cur.y][cur.x] == 'E') {
                 check = true;
                 System.out.println("Escaped in " + cur.cnt + " minute(s).");
                 return;
@@ -63,9 +62,9 @@ public class num6593 {
                 nz = cur.z + dz[i];
 
                 if(checkPoint(nx, ny, nz)){
-                    if(!visited[nz][nx][ny] && map[nz][nx][ny] != '#'){
+                    if(!visited[nz][ny][nx] && map[nz][ny][nx] != '#'){
                         q.add(new Point(nx, ny, nz, cur.cnt + 1));
-                        visited[nz][nx][ny] = true;
+                        visited[nz][ny][nx] = true;
                     }
                 }
 
@@ -75,28 +74,28 @@ public class num6593 {
     }
 
     public static boolean checkPoint(int x, int y, int z){
-        return x >= 0 && y >= 0 && z >= 0 && x < R && y < C && z < L;
+        return x >= 0 && y >= 0 && z >= 0 && y < R && x < C && z < L;
     }
 
     public static void init() {
         check = false;
         q = new LinkedList<>();
-        map = new char[L][R][C];
+        map = new char[L][R][C]; // z, y, x
         visited = new boolean[L][R][C];
     }
 
     public static void insertMapData() throws IOException {
         // input data
-        for (int i = 0; i < L; i++) {
-            for (int j = 0; j < R; j++) {
+        for (int i = 0; i < L; i++) { // z
+            for (int j = 0; j < R; j++) { // y
                 char[] data = br.readLine().toCharArray();
 
-                for (int k = 0; k < C; k++) {
+                for (int k = 0; k < C; k++) { // x
                     map[i][j][k] = data[k];
 
                     // 시작점 추가
                     if (data[k] == 'S') {
-                        q.add(new Point(i, j, k, 0));
+                        q.add(new Point(k, j, i, 0));
                         visited[i][j][k] = true;
                     }
                 }
