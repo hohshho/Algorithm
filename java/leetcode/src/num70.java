@@ -1,6 +1,6 @@
 public class num70 {
-    class Solution {
-        public static int climbStairs(int n) {
+    static class Solution {
+        public int climbStairs(int n) {
             if (n <= 1) {
                 return 1;
             }
@@ -15,9 +15,5 @@ public class num70 {
 
             return dp[n];
         }
-    }
-
-    public static void main(String[] args){
-        System.out.println(Solution.climbStairs(3));
     }
 }
