@@ -7,6 +7,14 @@
 my_list = [0 for _ in range(n)] # 리스트 컴프리헨션
 my_list = [0] * n
 
+my_list = [1,2,3,4,5,6,7,8,9,10]
+even = [i for i in my_list if i % 2 == 0] # 조건필터 추가
+# [2, 4, 6, 8, 10]
+
+even = [i**2 for i in my_list if i % 2 == 0] # 별도의 연산 추가
+
+# [4, 16, 36, 64, 100]
+
 my_list = ['a','b','c']
 
 # 리스트 포함 여부 in
@@ -15,7 +23,22 @@ if 'b' in a:
 else:
     print("비포함")
 
-my_list[-1] # 마지막 값 가져오기
+# 마지막 값 가져오기
+my_list[-1]
+
+# 리스트 값 추가
+
+# 리스트 값 업데이트
+
+# 리스트 값 제거
+
+## 리스트 마지막 요소 제거
+deleted_value = my_list.pop()
+del my_list[-1]
+my_list = my_list[:-1]
+
+
+
 
 # 2차원 배열
 dp = [[0 for _ in range(triDepth)] for _ in range(triDepth)]
@@ -132,7 +155,31 @@ last_day = (29 if year % 400 == 0 or year % 4 == 0 and year % 100 else 28) \
           if (month>=8) else (31 if month%2 else 30)
 ```
 
-## 0.8 기타 내장함수
+## 0.8 문자열
+
+```python
+test_str = "asdfasdf"
+
+# 슬라이싱 활용
+test_str[0] # a
+test_str[2] # c
+
+# 문자열 값 변경
+# 특정 패턴 값 변경
+# 문자열.replace("검색 문자", "치환문자", 치환 횟수)
+test_str.replace("a","b") # bsdfasdf
+
+# 원하는 위치 문자 변경
+test = list(test_str)
+test[0] = "z"
+
+# 정규 표현식으로 변경
+
+# 문자열 연결 방법으로 문자 변경
+
+```
+
+## 0.9 기타 내장함수
 
 ```python
 
@@ -192,6 +239,8 @@ sorted(arr, key=lambda x : x[0]) # 원소의 첫글자 기준으로 정렬
 
 ```python
 # set
+set_even = {i**2 for i in mylist if i % 2 == 0} # set 컴프리헨션
+# {4, 16, 36, 64, 100}
 
 my_set = {1, 2, 3, 4, 5}
 
@@ -204,7 +253,28 @@ my_list = list(my_set)
 for i in range(len(my_list)):
     print(my_list[i])
 
+# set값 추가
+my_set.add(6)
+
+# set값 수정
+my_set.update(1,2,3)
+
+# set값 삭제
+my_set.remove(3)
+
+# ---
+
 # map
+# map 컴프리헨션
+li = ['A','B','C']
+di = {x:0 for x in li}
+# {'A': 0, 'B': 0, 'C': 0}
+
+my_list = [1,2,3,4,5,6,7,8,9,10]
+dict_even = {i:i**2 for i in my_list if i % 2 == 0}
+# {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+
+
 dictionary = {
   "apple" : 5,
   "banana" : 10,
@@ -222,9 +292,36 @@ for key in dictionary :
 # value 사용
 for value in dictionary.values() :
     print(value)
+
+# dict값 추가
+dict['papa'] = 3
+
+# dict값 수정
+dict['papa'] = 4
+
+# dict값 삭제
+dict.pot('papa')
 ```
 
 # 5. 스택, 큐, 덱
+
+스택
+
+```python
+
+```
+
+큐
+
+```python
+
+```
+
+덱
+
+```python
+
+```
 
 # 6. 조합
 
@@ -242,16 +339,20 @@ for value in dictionary.values() :
 
 # 13. 우선순위 큐
 
-# 14. 그래프
+# 14. DFS / BFS
 
-# 15. 최단거리
+최소 경로일 경우 -> BFS활용
 
-# 16. 투포인터
+# 15. 그래프
 
-# 17. 트리
+# 16. 최단거리
 
-# 18. 최소신장트리
+# 17. 투포인터
 
-# 21. 유니온파인드
+# 18. 트리
 
-# 22. 위상정렬
+# 19. 최소신장트리
+
+# 20. 유니온파인드
+
+# 21. 위상정렬
