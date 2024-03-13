@@ -7,12 +7,13 @@
 my_list = [0 for _ in range(n)] # 리스트 컴프리헨션
 my_list = [0] * n
 
+# 조건필터 추가
 my_list = [1,2,3,4,5,6,7,8,9,10]
-even = [i for i in my_list if i % 2 == 0] # 조건필터 추가
+even = [i for i in my_list if i % 2 == 0]
 # [2, 4, 6, 8, 10]
 
-even = [i**2 for i in my_list if i % 2 == 0] # 별도의 연산 추가
-
+# 별도의 연산 추가
+even = [i ** 2 for i in my_list if i % 2 == 0]
 # [4, 16, 36, 64, 100]
 
 my_list = ['a','b','c']
@@ -27,18 +28,23 @@ else:
 my_list[-1]
 
 # 리스트 값 추가
+my_list.append('d')
+# ['a','b','c','d']
 
-# 리스트 값 업데이트
+my_list.insert(2, "baba") # 2번 인덱스에 "baba" 추가
+# ['a','b','baba','c','d']
 
-# 리스트 값 제거
+# 리스트 값 업데이트 -> 그냥 바꾸면 됌
+
+# 리스트 값 삭제
+my_list.remove('a')
+
+# 인덱스로 삭제
+del my_list[-1]
 
 ## 리스트 마지막 요소 제거
 deleted_value = my_list.pop()
-del my_list[-1]
 my_list = my_list[:-1]
-
-
-
 
 # 2차원 배열
 dp = [[0 for _ in range(triDepth)] for _ in range(triDepth)]
@@ -229,6 +235,7 @@ sorted(arr, key=lambda x : x) # 사전순으로 정렬
 # arr -> 반복 할 단위 (x를 지정할 전체 단위)
 # x) -> 앞서 반복할 단위의 각 원소를 x라고 할 때 어떤 기준으로 정렬할 지
 
+# 람다함수 -> lambda <<매개변수>> : <<리턴 값>>
 sorted(arr, key=lambda x : x[0]) # 원소의 첫글자 기준으로 정렬
 
 ```
@@ -300,7 +307,14 @@ dict['papa'] = 3
 dict['papa'] = 4
 
 # dict값 삭제
-dict.pot('papa')
+dict.pop('papa')
+
+# map 활용
+a = {'a':1,'b':2,'c':3,'d':1}; #도치 대상
+#딕셔너리 컬렉션 내포 표현식
+b = {value:key for key,value in a.items()}
+print(b);
+ # {1: 'd', 2: 'b', 3: 'c'}
 ```
 
 # 5. 스택, 큐, 덱
@@ -308,6 +322,16 @@ dict.pot('papa')
 스택
 
 ```python
+stack = []
+
+# 값 추가
+stack.append(item)
+
+# 값 삭제
+stack.pop()
+
+# 맨 위 값 확인
+stack[-1]
 
 ```
 
