@@ -1,8 +1,5 @@
 import java.util.*;
 
-import algo.samsung2023_2_2_1_ver2.Point;
-import algo.samsung2023_2_2_1_ver2.Santa;
-
 import java.io.*;
 
 // 16:40분
