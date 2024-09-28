@@ -33,7 +33,7 @@ NULL 포함 x -> null포함 하고 싶으면 ISNULL로 치환
 
 ```sql
 SELECT AVG(comm) AS avg1
-    , AVG(ISNULL(comm, 0)) AS avg2 # NULL인 경우 0으로 치환
+    , AVG(IFNULL(comm, 0)) AS avg2 # NULL인 경우 0으로 치환
 FROM empty
 WHERE job IN ('MANAGER', 'SALEMAN')
 ```
@@ -113,3 +113,5 @@ SELECT job
  WHERE deptno IN (20, 30)
  GROUP BY job HAVING SUM(sal) > 5000
 ```
+
+round, truncate, substr, date_format, datediff
