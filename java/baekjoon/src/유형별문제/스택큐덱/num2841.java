@@ -1,9 +1,8 @@
-package 유형별문제.스택;
+package 유형별문제.스택큐덱;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class num2841 {
