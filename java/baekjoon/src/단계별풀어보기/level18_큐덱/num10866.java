@@ -13,7 +13,7 @@ public class num10866 {
 		
 		int N = Integer.parseInt(br.readLine());
 		Deque<Integer> deque = new LinkedList<>();
-		
+
 		for(int i=0; i<N; i++) {
 			String[] inputData = br.readLine().split(" ");
 			
